@@ -28,7 +28,7 @@ export const ShopCard: React.FC<Props> = ({
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={{uri: image}} style={styles.image} />
+        <Image source={{ uri: image }} style={styles.image} />
       </View>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.perItemWeight}>{perItemWeight}</Text>
