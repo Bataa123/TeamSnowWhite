@@ -63,17 +63,27 @@ export const useCollectionSearch = (path: any, field: any, value: any) => {
   useEffect(() => {
     firestore()
       .collection(path)
-      .get()
-      .then((querySnapshot: any) => {
+      .onSnapshot((querySnapshot: any) => {
         const events = querySnapshot.docs.map((cur: any) => cur.data());
-        setCollection(
-          events.filter(
-            (cur: any) =>
-              cur[field] &&
-              cur[field].toLowerCase().search(value.toLowerCase()) !== -1 &&
-              value !== '',
-          ),
-        );
+        if (field === 'tags') {
+          const array = events.filter((cur: any) => {
+            var passed = false;
+            cur[field].forEach((element: string) => {
+              if (element.toLowerCase().search(value.toLowerCase()) !== -1)
+                passed = true;
+            });
+            return passed;
+          });
+          setCollection(array);
+        } else
+          setCollection(
+            events.filter(
+              (cur: any) =>
+                cur[field] &&
+                cur[field].toLowerCase().search(value.toLowerCase()) !== -1 &&
+                value !== '',
+            ),
+          );
       });
   }, [path, field, value]);
 

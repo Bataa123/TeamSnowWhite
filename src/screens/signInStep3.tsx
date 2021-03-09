@@ -12,11 +12,11 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {BackIcon, LocationIcon} from '../assets';
+import {BackIcon, MapIcon} from '../assets';
 import {Button, Separator} from '../components';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-const background1 = require('../assets/sign-in-1.png');
+const background1 = require('../assets/images/sign-in-1.png');
 const {width, height} = Dimensions.get('window');
 
 const Selecter = ({label, choises, state, setState}: any) => {
@@ -118,7 +118,7 @@ export const SignInStep3: React.FC<any> = (props) => {
             <BackIcon />
           </View>
         </TouchableOpacity>
-        <LocationIcon />
+        <MapIcon />
         <Text style={styles.titleBig}>Select Your Location</Text>
         <Text style={styles.titleSmall}>
           Swithch on your location to stay in tune with what’s happening in your

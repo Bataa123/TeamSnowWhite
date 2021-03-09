@@ -7,7 +7,7 @@ interface Props {
   others?: any;
 }
 
-export const LocationIcon: React.FC<Props> = ({
+export const MapIcon: React.FC<Props> = ({
   width = 225,
   height = 172,
   ...others

@@ -1,3 +1,4 @@
+export * from './splashScreen';
 export * from './account';
 export * from './cart';
 export * from './explore';
@@ -7,3 +8,7 @@ export * from './signInStarts';
 export * from './signInStep1';
 export * from './signInStep2';
 export * from './signInStep3';
+export * from './checkoutModal';
+export * from './productDetail';
+export * from './category';
+export * from './orderAccepted';
