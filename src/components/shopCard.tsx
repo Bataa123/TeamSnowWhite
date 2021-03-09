@@ -48,7 +48,7 @@ export const ShopCard: React.FC<Props> = ({
       <View style={styles.priceContainer}>
         <Text style={styles.price}>${price}</Text>
         <TouchableOpacity onPress={() => addCart()}>
-          <View
+          <View 
             style={{
               height: 45,
               width: 45,
