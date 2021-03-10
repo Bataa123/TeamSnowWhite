@@ -11,7 +11,7 @@ export const Account = () => {
   const user: any = auth().currentUser;
   const navigation = useNavigation();
   const userData = useFireStoreDoc(`users/${user.uid}`).doc;
-
+  
   const signOut = () => {
     auth().signOut();
     navigation.navigate('splash');

@@ -1,10 +1,10 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useContext} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {PlusIcon} from '../assets';
-import {cartContext} from '../provider/';
-
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext } from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { PlusIcon } from '../assets';
+import { cartContext } from '../provider/';
+import {Favourite} from '../screens/favourite'
 interface Props {
   image: string;
   name: string;
@@ -21,34 +21,32 @@ export const ShopCard: React.FC<Props> = ({
   perItemWeight,
 }) => {
   const navigation = useNavigation();
-  const {setCart} = useContext<any>(cartContext);
+  const { setCart } = useContext<any>(cartContext);
   const addCart = () => {
-    const data = {id, number: 1, price: price};
-    setCart((cart: any) => ({...cart, [id]: data}));
+    const data = { id, number: 1, price: price };
+    setCart((cart: any) => ({ ...cart, [id]: data }));
   };
+
+  // const a = () => {
+  //   navigation.navigate('Favourite', {
+
+  //   })
+  // }
 
   return (
     <View style={styles.container}>
-<<<<<<< HEAD
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: image }} style={styles.image} />
-      </View>
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.perItemWeight}>{perItemWeight}</Text>
-=======
       <TouchableOpacity
-        onPress={() => navigation.navigate('product-detail', {id})}>
+        onPress={() => navigation.navigate('product-detail', { id })}>
         <View style={styles.imageContainer}>
-          <Image source={{uri: image}} style={styles.image} />
+          <Image source={{ uri: image }} style={styles.image} />
         </View>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.perItemWeight}>{perItemWeight}</Text>
       </TouchableOpacity>
->>>>>>> upstream/master
       <View style={styles.priceContainer}>
         <Text style={styles.price}>${price}</Text>
         <TouchableOpacity onPress={() => addCart()}>
-          <View 
+          <View
             style={{
               height: 45,
               width: 45,

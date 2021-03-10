@@ -45,6 +45,16 @@ export const useFireStoreCol = (path: any) => {
           setCollection(array);
         });
     } else {
+
+      // let q = firestore()
+      // .collection(path)
+
+      // q.reduce((q, where) => )()
+
+      // if (wheres) {
+
+      // }
+
       firestore()
         .collection(path)
         .onSnapshot((res) => {
@@ -65,7 +75,7 @@ export const useCollectionSearch = (path: any, field: any, value: any) => {
       .collection(path)
       .onSnapshot((querySnapshot: any) => {
         const events = querySnapshot.docs.map((cur: any) => cur.data());
-        if (field === 'tags') {
+        if (field === 'tags') { 
           const array = events.filter((cur: any) => {
             var passed = false;
             cur[field].forEach((element: string) => {

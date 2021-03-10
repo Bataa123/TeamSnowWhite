@@ -50,7 +50,7 @@ export const Input: React.FC<InputProps> = ({
                     width: width,
                     height: height,
                 }}
-                onChangeText={text => onChangeText(text)}
+                onChangeText={text => onChangeText}
                 value={value}
                 placeholder={placeholder}
             />
