@@ -4,7 +4,6 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { PlusIcon } from '../assets';
 import { cartContext } from '../provider/';
-import {Favourite} from '../screens/favourite'
 interface Props {
   image: string;
   name: string;
@@ -40,7 +39,7 @@ export const ShopCard: React.FC<Props> = ({
         <View style={styles.imageContainer}>
           <Image source={{ uri: image }} style={styles.image} />
         </View>
-        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.name}>{name.length > 17 ? name.slice(0, 14) + '...' : name}</Text>
         <Text style={styles.perItemWeight}>{perItemWeight}</Text>
       </TouchableOpacity>
       <View style={styles.priceContainer}>
@@ -85,11 +84,13 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   name: {
+    marginLeft: 10,
     fontSize: 18,
     fontWeight: '600',
     lineHeight: 30,
   },
   perItemWeight: {
+    marginLeft: 10,
     width: 140,
     fontSize: 16,
     lineHeight: 17,

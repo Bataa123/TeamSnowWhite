@@ -1,48 +1,41 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { ShopCard } from '../components/shopCard'
-import { Text } from 'react-native-svg';
-import { useFireStoreCol, useCollectionSearch, useFireStoreDoc } from '../hooks';
+import React, { useContext } from 'react';
+import {StyleSheet, View, SafeAreaView, Text, Dimensions, FlatList} from 'react-native';
 import auth from '@react-native-firebase/auth';
+import {useFireStoreCol} from '../hooks';
+import { Separator, FavouriteCard } from '../components';
+import { cartContext } from '../provider';
+const {width} = Dimensions.get('window');
 
 export const Favourite = () => {
-  const user: any = auth().currentUser || {};
-  // const userData = useFireStoreDoc(`users/${user.uid}`);
-  const { collection } = useFireStoreCol(`users/${user.uid}/favourite`);
-  console.log(collection)
- 
-  useEffect(() => {
-    if (!collection.length) return
-    
-    const productData  = useFireStoreDoc(`products/${collection}`)
-  }, [collection])
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.box}>
-        {/* <Text style={styles.title} > */}
-        {/* </Text> */}
-      </View>
-    </View>
+  const {cart} = useContext<any>(cartContext);
+  const user: any = auth().currentUser;
+  const userFavourite = useFireStoreCol(`users/${user.uid}/favourite`).collection;
+  return ( 
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Favourites</Text>
+      <Separator width={width}/>
+      <FlatList
+        data={Object.values(userFavourite)}
+        keyExtractor={(item: any) => item.productId}
+        renderItem={({item, index}: any) => <FavouriteCard id={item.productId} />}
+        ItemSeparatorComponent={() => <Separator />}
+      />
+    </SafeAreaView>
   )
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
-  color:{
-    color:'green'
-  },
-  box: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   title: {
-    color: 'black',
-    fontSize: 20
-  }
+    width: width,
+    marginTop: 10,
+    height: 50,
+    fontSize: 23,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
 });
